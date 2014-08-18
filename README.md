@@ -8,7 +8,7 @@ You can read an overview of what this does and why it came into being at the [Sa
 
     <?php
     
-    use \simpleflake;
+    require "simpleflake.php";
     
     $newId = \simpleflake\generate();
     echo "ID: $newId\n";
