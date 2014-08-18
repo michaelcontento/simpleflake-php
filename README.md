@@ -6,17 +6,18 @@ You can read an overview of what this does and why it came into being at the [Sa
 
 # Usage
 
-    <?php
-    
-    require "simpleflake.php";
-    
-    $newId = \simpleflake\generate();
-    echo "ID: $newId\n";
-    
-    $parts = \simpleflake\parse($newId);
-    echo "Timestamp:  " . $parts["timestamp"] . "\n";
-    echo "RandomBits: " . $parts["randomBits"] . "\n";
-    
+```PHP
+<?php
+
+require "simpleflake.php";
+
+$newId = \simpleflake\generate();
+echo "ID: $newId\n";
+
+$parts = \simpleflake\parse($newId);
+echo "Timestamp:  " . $parts["timestamp"] . "\n";
+echo "RandomBits: " . $parts["randomBits"] . "\n";
+```
 
 [desc]: http://engineering.custommade.com/simpleflake-distributed-id-generation-for-the-lazy/
 [simpleflake-py]: https://github.com/SawdustSoftware/simpleflake
