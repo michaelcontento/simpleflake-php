@@ -61,3 +61,28 @@ function parse($flake, $epoch = EPOCH)
         "randomBits" => $randomBits
     );
 }
+
+/**
+ * Alias for generate to be "compatible" with the python idol :)
+ *
+ * @param int|null $timestamp
+ * @param int|null $randomBits
+ * @param int $epoch
+ * @return int
+ */
+function simpleflake($timestamp = null, $randomBits = null, $epoch = EPOCH)
+{
+    return generate($timestamp, $randomBits, $epoch);
+}
+
+/**
+ * Alias for parse to be "compatible" with the python idol :)
+ *
+ * @param int $flake
+ * @param int $epoch
+ * @return int
+ */
+function parse_simpleflake($flake, $epoch = EPOCH)
+{
+    return parse($flake, $epoch);
+}
