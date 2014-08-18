@@ -10,22 +10,12 @@ const EPOCH = 946702800;
 /**
  * @var int
  */
-const TIMESTAMP_LENGTH = 41;
-
-/**
- * @var int
- */
 const TIMESTAMP_SHIFT = 23;
 
 /**
  * @var int
  */
-const RANDOM_LENGTH = 23;
-
-/**
- * @var int
- */
-const RANDOM_SHIFT = 0;
+const RANDOM_MAX_VALUE = 4194303;
 
 /**
  * Generate a 64 bit, roughly-ordered, globally-unique ID.
@@ -37,33 +27,21 @@ const RANDOM_SHIFT = 0;
  */
 function generate($timestamp = null, $randomBits = null, $epoch = EPOCH)
 {
-    $timestamp = ($timestamp) ? $timestamp : microtime(true);
+    $timestamp = ($timestamp !== null) ? $timestamp: microtime(true);
     $timestamp -= $epoch;
-    $timestamp = (int) ($timestamp * 1000);
+    $timestamp *= 1000;
+    $timestamp = (int) $timestamp;
 
     if ($randomBits !== null) {
         // use given random bits
     } else if (function_exists("mt_rand")) {
-        $randomBits = mt_rand() * RANDOM_LENGTH;
+        $randomBits = mt_rand(0, RANDOM_MAX_VALUE);
     } else {
-        $randomBits = rand() * RANDOM_LENGTH;
+        $randomBits = rand() * RANDOM_MAX_VALUE;
     }
 
-    return ($timestamp << TIMESTAMP_SHIFT) + $randomBits;
-}
-
-/**
- * Extract a portion of a bit string. Similar to substr().
- *
- * @param int $data
- * @param int $shift
- * @param int $length
- * @return int
- */
-function extract_bits($data, $shift, $length)
-{
-    $mask = ((1 << $length) - 1) << $shift;
-    return (($data & $mask) >> $shift);
+    $flake = ($timestamp << TIMESTAMP_SHIFT) | $randomBits;
+    return (int) $flake;
 }
 
 /**
@@ -75,8 +53,8 @@ function extract_bits($data, $shift, $length)
  */
 function parse($flake, $epoch = EPOCH)
 {
-    $timestamp = extract_bits($flake, TIMESTAMP_SHIFT, TIMESTAMP_LENGTH) / 1000;
-    $randomBits = extract_bits($flake, RANDOM_SHIFT, RANDOM_LENGTH);
+    $timestamp = ($flake >> TIMESTAMP_SHIFT) / 1000.0;
+    $randomBits = $flake & RANDOM_MAX_VALUE;
 
     return array(
         "timestamp" => $timestamp + $epoch,
