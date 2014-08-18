@@ -33,15 +33,15 @@ function generate($timestamp = null, $randomBits = null, $epoch = EPOCH)
     $timestamp = (int) $timestamp;
 
     if ($randomBits !== null) {
-        // use given random bits
+        $randomBits = (int) $randomBits;
     } else if (function_exists("mt_rand")) {
         $randomBits = mt_rand(0, RANDOM_MAX_VALUE);
     } else {
-        $randomBits = rand() * RANDOM_MAX_VALUE;
+        $randomBits = (int) rand() * RANDOM_MAX_VALUE;
     }
 
     $flake = ($timestamp << TIMESTAMP_SHIFT) | $randomBits;
-    return (int) $flake;
+    return $flake;
 }
 
 /**
