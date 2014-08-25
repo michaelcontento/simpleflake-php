@@ -25,5 +25,5 @@ echo "RandomBits: " . $parts["randomBits"] . "\n";
 [desc]: http://engineering.custommade.com/simpleflake-distributed-id-generation-for-the-lazy/
 [simpleflake-py]: https://github.com/SawdustSoftware/simpleflake
 [SawdustSoftware]: http://sawdustsoftware.com/
-  
+
 
