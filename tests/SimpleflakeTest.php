@@ -15,7 +15,7 @@ class SimpleflakeTest extends \PHPUnit_Framework_TestCase
     public function testGenerateShouldReturnInt()
     {
         $id = \Simpleflake\generate();
-        $this->assertInternalType(int, $id);
+        $this->assertInternalType("integer", $id);
     }
 
     public function testGenerateResultLength()
