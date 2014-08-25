@@ -1,5 +1,8 @@
 # simpleflake-PHP
 
+Travis Status: [![Build Status](https://secure.travis-ci.org/michaelcontento/simpleflake-php.png?branch=master)](http://travis-ci.org/michaelcontento/simpleflake-php)
+
+
 Distributed ID generation in PHP for the lazy. Based on the awesome [python implementation][simpleflake-py] from [SawdustSoftware][].
 
 You can read an overview of what this does and why it came into being at the [Sawdust Software Blog][desc].

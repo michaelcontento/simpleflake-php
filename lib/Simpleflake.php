@@ -1,6 +1,6 @@
 <?php
 
-namespace simpleflake;
+namespace Simpleflake;
 
 /**
  * @var int
