@@ -5,7 +5,7 @@
         "name": "Michael Contento",
         "email": "michaelcontento@gmail.com"
     }],
-    "license": "",
+    "license": "MIT",
     "keywords": ["simpleflake", "uuid"],
     "require-dev": {
         "phpunit/phpunit": "3.7.*"
